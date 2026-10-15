@@ -7,27 +7,66 @@
 <body>
 
     <h1>Library Management System</h1>
-    <hr>
 
-    <h2>Add a Book</h2>
+    <h2>Login</h2>
 
-    <input type="text" id="book"
-           placeholder="Enter book name">
-    <button onclick="addBook()">Add Book</button>
+    <form>
+        <label>Username:</label>
+        <input type="text" id="username" required>
+        <br><br>
 
-    <h2>Book List</h2>
-    <ul id="list"></ul>
+        <label>Password:</label>
+        <input type="password" id="password" required>
+        <br><br>
+
+        <button type="button" onclick="login()">Login</button>
+        <button type="button" onclick="logout()">Logout</button>
+    </form>
+
+    <p id="message"></p>
+
+    <div id="library" style="display:none;">
+        <h2>Welcome to the Library</h2>
+
+        <h3>Add Book</h3>
+        <input type="text" id="book" placeholder="Enter book name">
+        <button onclick="addBook()">Add Book</button>
+
+        <h3>Book List</h3>
+        <ul id="bookList"></ul>
+    </div>
 
     <script>
+        function login() {
+            let user = document.getElementById("username").value;
+            let pass = document.getElementById("password").value;
+
+            if (user == "admin" && pass == "1234") {
+                document.getElementById("message").innerHTML =
+                    "Login Successful";
+
+                document.getElementById("library").style.display = "block";
+            } else {
+                document.getElementById("message").innerHTML =
+                    "Invalid Username or Password";
+            }
+        }
+
+        function logout() {
+            document.getElementById("library").style.display = "none";
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("message").innerHTML =
+                "Logged Out Successfully";
+        }
+
         function addBook() {
             let book = document.getElementById("book").value;
 
-            if (book == "") {
-                alert("Enter book name");
-            } else {
+            if (book != "") {
                 let li = document.createElement("li");
                 li.innerHTML = book;
-                document.getElementById("list").appendChild(li);
+                document.getElementById("bookList").appendChild(li);
                 document.getElementById("book").value = "";
             }
         }
@@ -36,3 +75,7 @@
 </body>
 </html>
 ```
+
+**Login details:**
+- Username: `admin`
+- Password: `1234`
