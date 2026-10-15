@@ -1,0 +1,38 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management System</title>
+</head>
+<body>
+
+    <h1>Library Management System</h1>
+    <hr>
+
+    <h2>Add a Book</h2>
+
+    <input type="text" id="book"
+           placeholder="Enter book name">
+    <button onclick="addBook()">Add Book</button>
+
+    <h2>Book List</h2>
+    <ul id="list"></ul>
+
+    <script>
+        function addBook() {
+            let book = document.getElementById("book").value;
+
+            if (book == "") {
+                alert("Enter book name");
+            } else {
+                let li = document.createElement("li");
+                li.innerHTML = book;
+                document.getElementById("list").appendChild(li);
+                document.getElementById("book").value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
+```
